@@ -12,13 +12,22 @@
     </style>
 </head>
 <body>
+    <div></div>
     <div class="container-fluid" style="min-height:95%">
         <div class="row">
             <div class="col-sm-2">
                 <img src="{% static 'image/avatar.jpg' %}" height="100px" width="auto">
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-9">
                 <h1>Blog lam tu django</h1>
+            </div>
+            <div class="col-sm-1">
+                {% if user.username%}
+                    <p>Xin chao {{user.username}}</p>
+                    <p><a href="{% url 'logout' %}">Đăng Xuất</a></p>
+                {%else%}
+                    <p><a href="{% url 'register'%}">Đăng Ky</a></p>||<p><a href="{% url 'login'%}">Đăng nhaapj</a></p>||
+                {%endif%}
             </div>
         </div>
         <div class="row">
