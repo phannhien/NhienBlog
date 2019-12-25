@@ -4,6 +4,14 @@
     {% load staticfiles %}
 	<title>{% block title %}{% endblock  %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CLibre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/clear.css' %}" />
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/common.css'%}" />
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/font-awesome.min.css' %}" />
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/carouFredSel.css' %}" />
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/sm-clean.css' %}" />
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}" />
     <style>
         html, body{
             height: 100%;
@@ -11,50 +19,99 @@
         }
     </style>
 </head>
-<body>
-    <div></div>
-    <div class="container-fluid" style="min-height:95%">
-        <div class="row">
-            <div class="col-sm-2">
-                <img src="{% static 'image/avatar.jpg' %}" height="100px" width="auto">
-            </div>
-            <div class="col-sm-9">
-                <h1>Blog lam tu django</h1>
-            </div>
-            <div class="col-sm-1">
+<body class="home blog">
+            <!--<div class="col-sm-1">
                 {% if user.username%}
                     <p>Xin chao {{user.username}}</p>
                     <p><a href="{% url 'logout' %}">Đăng Xuất</a></p>
                 {%else%}
                     <p><a href="{% url 'register'%}">Đăng Ky</a></p>||<p><a href="{% url 'login'%}">Đăng nhaapj</a></p>||
                 {%endif%}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="bs-sliderbar">
-                    <ul class="nav flex-column">
-                        <li><a href="/">Thông Tin Cá Nhân</a></li>
-                        <li><a href="{% url 'blog' %}">Blog</a></li>
-                        <li><a href="{% url 'contact' %}">Contact</a></li>
-                    </ul>
-                </div>
+            </div>-->
+    <!-- Preloader Gif -->
+    <table class="doc-loader">
+        <tbody>
+            <tr>
+                <td>
+                    <img src="{% static 'images/ajax-document-loader.gif' alt='Loading...' %}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
+    <!-- Left Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="menu-left-part">
+            <div class="search-holder">
+                <label>
+                    <input type="search" class="search-field" placeholder="Type here to search..." value="" name="s" title="Search for:">
+                </label>
             </div>
-            <div class="col-sm-10">
-                <div class="container-fluid">
-                    Nội Dung
-                    {%block content%}
-                
-                    {% endblock  %}
+            <div class="site-info-holder" style="text-align: center;" >
+                <h1 class="site-title">Xin Chào {{user.username}}</h1>
+                <img src="{% static 'image/avatar.jpg' %}" height="100px" width="auto">
+            </div>
+            <nav id="header-main-menu">
+                <ul class="main-menu sm sm-clean">
+                    <li><a href="/" class="current">Trang chủ</a></li>
+                    <li><a href="{% url 'blog' %}">Bài Viết</a></li>
+                    <li><a href="{% url 'contact' %}">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            <footer>
+                <div class="footer-info">
+                    © 2019 PHAN XUÂN NHIÊN. <br> PHANNHIEN <i class="fa fa-heart"></i> BY <a href="#">PHAN NHIÊN</a>.
+                </div>
+            </footer>
+        </div>
+        <div class="menu-right-part">
+            <div class="logo-holder">
+                <a href="#">
+                    <img src="{% static 'images/logo.png' alt='Suppablog WP' %}">
+                </a>
+            </div>
+            <div class="toggle-holder">
+                <div id="toggle">
+                    <div class="menu-line"></div>
+                </div>
+            </div>
+            <div class="social-holder">
+                <div class="social-list">
+                    {% if user.username%}
+                        <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                        <a href="{% url 'logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                    {%else%}
+                    <a href="{% url 'register'%}"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                    <a href="{% url 'login'%}"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    {%endif%}
                 </div>
             </div>
         </div>
+        <div class="clear"></div>
     </div>
-    <footer>
-        <div class="container-fluid">
-            <a href="#">Facebook</a>|<a href="#">Intagram</a>|<a href="#">Youtube</a>
+
+    <!-- Home Content -->
+    <div id="content" class="site-content">
+        <div class="row">
+            <div class="col-sm-6 " style="padding-top: 100px; text-align: center;">
+                {%block content%}
+            
+                {% endblock  %}
+            </div>
+            <div class="col-sm-6" style="text-align: center; padding-top: 100px;">
+                <img src="{% static 'demo-images/featured-image.jpg' alt='Suppablog WP' %}" height="629px">
+            </div>
         </div>
-    </footer>
+        <div class="clear"></div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/imagesloaded.pkgd.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.smartmenus.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.carouFredSel-6.0.0-packed.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.mousewheel.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.touchSwipe.min.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+    <script type='text/javascript' src="{% static 'js/main.js'%}"></script>
 </body>
 </html>

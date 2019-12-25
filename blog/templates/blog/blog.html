@@ -1,10 +1,12 @@
 {% extends "pages/base.html" %}
 
-{% block title %}Blog{% endblock  %}
+{% block title %}BLOG - PHAN XUÂN NHIÊN{% endblock  %}
 
 {%block content%}
+    <h4>DANH MỤC BÀI VIẾT</h4>
 {% for post in Posts%}
-    <h4>{{post.date|date:"d-m-Y"}}<a href="/blog/{{post.id}}">{{post.title}}</a></h4>
+    <h5><a href="/blog/{{post.id}}">{{post.title}}</a></h5>
+    <p>Ngày viết: {{post.date|date:"d-m-Y"}}</p>
     <img src="{{post.image.url}}" width = "500px" height="auto">
 {% endfor %}
 {% endblock  %}
